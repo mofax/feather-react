@@ -1,0 +1,29 @@
+{
+  "name": "featharie",
+  "description": "feather-icons as react components",
+  "version": "0.0.1",
+  "keywords": [
+    "react",
+    "typescript",
+    "feather",
+    "feather icons",
+    "icons"
+  ],
+  "homepage": "https://github.com/mofax/featherie",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mofax/featherie"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "16.3.3",
+    "@types/prettier": "2.3.2",
+    "@types/react": "17.0.14",
+    "prettier": "2.3.2",
+    "ts-node": "10.1.0",
+    "typescript": "4.3.5"
+  },
+  "peerDependencies": {
+    "react": "^15"
+  }
+}
