@@ -4,14 +4,33 @@ import { format } from "prettier";
 
 const svgDIR = path.join(process.cwd(), "svg");
 
+function stripProps(str: string) {
+  const index = str.indexOf(">");
+  const right = str.substring(index + 1);
+  return "<svg {...props}>" + right;
+}
+
 function componentString(name: string, body: string) {
-  // hack to add props
-  const bodyWithProps = body.replace(">", "{...props}>");
+  const bodyWithProps = stripProps(body);
 
   return `
         import React from 'react'
 
-        export default function ${name}(props: React.SVGProps<SVGSVGElement>) {
+        const defaultProps = {
+          xmlns: "http://www.w3.org/2000/svg",
+          width: 24,
+          height: 24,
+          viewBox: "0 0 24 24",
+          fill: "none",
+          stroke: "currentColor",
+          strokeWidth: 2,
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+        };
+
+        export default function ${name}(incomingProps: React.SVGProps<SVGSVGElement>) {
+            const props = Object.assign(defaultProps, incomingProps);
+
             return ${bodyWithProps}
         }
 
